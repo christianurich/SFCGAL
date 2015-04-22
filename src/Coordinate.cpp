@@ -24,6 +24,8 @@
 #include <SFCGAL/Exception.h>
 #include <SFCGAL/numeric.h>
 
+#include <boost/math/special_functions/fpclassify.hpp>
+
 namespace SFCGAL {
 
 ///
@@ -58,7 +60,7 @@ Coordinate::Coordinate( const Kernel::FT& x, const Kernel::FT& y, const Kernel::
 ///
 Coordinate::Coordinate( const double& x, const double& y )
 {
-    if ( !std::isfinite( x ) || !std::isfinite( y ) ) {
+	if ( !boost::math::isfinite( x ) || !boost::math::isfinite( y ) ) {
         BOOST_THROW_EXCEPTION( NonFiniteValueException( "cannot create coordinate with non finite value" ) );
     }
 
@@ -70,7 +72,7 @@ Coordinate::Coordinate( const double& x, const double& y )
 ///
 Coordinate::Coordinate( const double& x, const double& y, const double& z )
 {
-    if ( !std::isfinite( x ) || !std::isfinite( y ) || !std::isfinite( z ) ) {
+	if ( !boost::math::isfinite( x ) || !boost::math::isfinite( y ) || !boost::math::isfinite( z ) ) {
         BOOST_THROW_EXCEPTION( NonFiniteValueException( "cannot create coordinate with non finite value" ) );
     }
 

@@ -41,6 +41,8 @@
 #include <CGAL/approximated_offset_2.h>
 #include <CGAL/offset_polygon_2.h>
 
+#include <boost/math/special_functions/fpclassify.hpp>
+
 typedef CGAL::Polygon_2< SFCGAL::Kernel >            Polygon_2 ;
 typedef CGAL::Polygon_with_holes_2< SFCGAL::Kernel > Polygon_with_holes_2 ;
 typedef CGAL::Polygon_set_2< SFCGAL::Kernel >        Polygon_set_2 ;
@@ -55,7 +57,7 @@ typedef CGAL::General_polygon_set_2< Gps_traits_2 >            Offset_polygon_se
 #define SFCGAL_OFFSET_ACCURACY 0.0001
 
 #define SFCGAL_OFFSET_ASSERT_FINITE_RADIUS( r ) \
-    if ( !std::isfinite(r) ) BOOST_THROW_EXCEPTION( NonFiniteValueException("radius is non finite") );
+    if ( !boost::math::isfinite(r) ) BOOST_THROW_EXCEPTION( NonFiniteValueException("radius is non finite") );
 namespace SFCGAL {
 namespace algorithm {
 
