@@ -106,7 +106,7 @@ struct Surface_d<3>: Triangle_3 {
     typedef std::vector< algorithm::Point_2 > PointVector;
     typedef std::vector< Segment_2 > SegmentVector;
     typedef std::vector< PointVector > SurfaceVector;
-	typedef typename SegmentVector::const_iterator SegmentIterr;
+	typedef SegmentVector::const_iterator SegmentIterr;
 
     Surface_d( const Triangle_3& s ): Triangle_3( s ), _plane( s.supporting_plane() ) {
         this->splitAt( s );
