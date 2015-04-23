@@ -23,7 +23,7 @@
 
 //----- DLL MANAGEMENT ------------------
 
-#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
+#if defined(_WIN32) ||defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
 #define SFCGAL_API_IMPORT __declspec(dllimport)
 #define SFCGAL_API_EXPORT __declspec(dllexport)
 

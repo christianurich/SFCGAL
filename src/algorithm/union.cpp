@@ -46,10 +46,13 @@ enum PrimitiveType {
 
 template <int Dim>
 struct Segment_d: detail::Segment_d<Dim>::Type {
-    typedef typename detail::Point_d<Dim>::Type PointType;
+	typedef typename detail::Point_d<Dim>::Type PointType;
     typedef typename detail::Segment_d<Dim>::Type SegmentType;
     typedef typename std::vector< PointType > PointVector;
-    typedef typename std::vector< SegmentType > SegmentVector;
+	typedef typename std::vector< SegmentType > SegmentVector;
+
+	typedef typename PointVector::const_iterator PointIterr;
+	typedef typename SegmentVector::const_iterator SegmentIterr;
 
     Segment_d( const SegmentType& s ): SegmentType( s ) {}
     void splitAt( const PointType& p ) {
@@ -68,11 +71,11 @@ struct Segment_d: detail::Segment_d<Dim>::Type {
         points.push_back( this->target() );
         std::sort( points.begin()+1, points.end()-1, Nearer< PointType >( this->source() ) );
 
-        for ( typename PointVector::const_iterator p = points.begin(), q = p+1;
+		for ( PointIterr p = points.begin(), q = p+1;
                 q != points.end(); ++p, q++ ) {
             if ( *p != *q ) {
                 PointType m = CGAL::midpoint( *p, *q );
-                typename SegmentVector::const_iterator r = _remove.begin();
+				SegmentIterr r = _remove.begin();
 
                 for ( ; r != _remove.end() && !r->has_on( m ); ++r );
 
@@ -103,6 +106,7 @@ struct Surface_d<3>: Triangle_3 {
     typedef std::vector< algorithm::Point_2 > PointVector;
     typedef std::vector< Segment_2 > SegmentVector;
     typedef std::vector< PointVector > SurfaceVector;
+	typedef typename SegmentVector::const_iterator SegmentIterr;
 
     Surface_d( const Triangle_3& s ): Triangle_3( s ), _plane( s.supporting_plane() ) {
         this->splitAt( s );
@@ -173,11 +177,12 @@ struct Surface_d<3>: Triangle_3 {
         //
         // after that we just check, for each triangle, if a point fall in a removed part and remove it
         // we can do that by pairwise union of all segments
+
         std::vector< Segment_2 > filtered;
         {
             std::vector< Segment_d<2> > lines( _split.begin(), _split.begin()+3 );
 
-            for ( typename SegmentVector::const_iterator c = _split.begin()+3; c != _split.end(); ++c ) {
+			for ( SegmentIterr c = _split.begin()+3; c != _split.end(); ++c ) {
                 Segment_d<2> current( *c );
 
                 for ( std::vector< Segment_d<2> >::iterator l = lines.begin(); l != lines.end(); ++l ) {

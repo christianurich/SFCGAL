@@ -271,7 +271,7 @@ public:
 protected:
     Geometry();
     Geometry( const Geometry& );
-    const Geometry& operator=( const Geometry& );
+	//const Geometry& operator=( const Geometry& );
 };
 
 /**

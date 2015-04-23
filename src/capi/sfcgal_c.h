@@ -22,7 +22,9 @@
 #define _SFCGAL_CAPI_H_
 
 #include <SFCGAL/config.h>
-#include <stdint.h>
+#include <boost/cstdint.hpp>
+
+//#include <stdint.h>
 #include <stddef.h>
 
 #ifdef __cplusplus
@@ -475,7 +477,7 @@ SFCGAL_API void                      sfcgal_solid_add_shell( sfcgal_geometry_t* 
  */
 typedef void sfcgal_prepared_geometry_t;
 
-typedef uint32_t srid_t;
+typedef boost::uint32_t srid_t;
 
 /**
  * Creates an empty PreparedGeometry

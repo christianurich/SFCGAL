@@ -33,8 +33,8 @@ namespace detail {
  */
 struct SFCGAL_API ComplexComparator {
     template < typename T >
-    inline bool operator () ( const std::complex< T >& a, const std::complex< T >& b ) {
-        return ( a.real() < b.real() ) || ( a.real() == b.real() && a.imag() < b.imag() );
+	inline bool operator () ( const std::complex< T >& a, const std::complex< T >& b ) const {
+		return ( a.real() < b.real() ) || ( a.real() == b.real() && a.imag() < b.imag() );
     }
 };
 

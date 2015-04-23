@@ -28,14 +28,15 @@
 #include <boost/serialization/split_member.hpp>
 #include <boost/optional.hpp>
 #include <boost/noncopyable.hpp>
+#include <boost/cstdint.hpp>
 
-#include <stdint.h> // uint32_t
+//#include <stdint.h> // uint32_t
 
 namespace SFCGAL {
 
 class Geometry;
 
-typedef uint32_t srid_t;
+typedef boost::uint32_t srid_t;
 
 /**
  * A PreparedGeometry is a shell around a SFCGAL::Geometry.
